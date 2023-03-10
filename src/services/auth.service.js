@@ -34,11 +34,7 @@ const validate = async (token) => {
   console.log(result);
   const isTokenPresent = await redisClient.getToken(token);
   if (!isTokenPresent) throw new UnAuthError('Invalid token');
-
-  const user = await User.findOne({ where: { email: result.email } });
-  if (!user) throw new UnAuthError('User not found');
-
-  return user;
+  return result;
 };
 
 module.exports = {

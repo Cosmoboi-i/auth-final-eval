@@ -22,6 +22,7 @@ const register = async (req, res, next) => {
 
 const validate = async (req, res, next) => {
   try {
+    console.log(req.headers)
     const token = req.headers.authorization?.split(' ')[1];
     const result = await authService.validate(token);
     res.status(200).json({ user: result, success: true });
